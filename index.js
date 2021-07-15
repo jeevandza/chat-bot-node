@@ -24,10 +24,10 @@ const client = new textToSpeech.TextToSpeechClient({
 
 
 //send the request
-app.get('/api', (req,res) =>{
+app.get('/', (req,res) =>{
   res.send('wer are live')
 }) ;
-app.post('/api', express.json(), async (req,res) =>{
+app.post('/', express.json(), async (req,res) =>{
     const sessionId = uuid.v4();
     const sessionClient = new dialogflow.SessionsClient({
         keyFilename: require("path").join('./noyalbot-p9ii-0dc8295201bc.json')
