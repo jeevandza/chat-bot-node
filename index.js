@@ -58,7 +58,7 @@ app.post('/', express.json(), async (req,res) =>{
     const requestTexttoSpeech = {
         input: {text: responses[0].queryResult.fulfillmentText},
         // Select the language and SSML voice gender (optional)
-        voice: {languageCode: 'en-IN', ssmlGender: 'FEMALE'},
+        voice: {languageCode: 'en-UK', ssmlGender: 'MALE'},
         // select the type of audio encoding
         audioConfig: {audioEncoding: 'MP3'},
     };
