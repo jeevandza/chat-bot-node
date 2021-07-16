@@ -44,7 +44,7 @@ app.post('/', express.json(), async (req,res) =>{
             // The query to send to the dialogflow agent
             text: req.body.message,
             // The language used by the client (en-US)
-            languageCode: 'en-IN',
+            languageCode: 'en-US',
           },
         },
       };
@@ -58,7 +58,7 @@ app.post('/', express.json(), async (req,res) =>{
     const requestTexttoSpeech = {
         input: {text: responses[0].queryResult.fulfillmentText},
         // Select the language and SSML voice gender (optional)
-        voice: {languageCode: 'en-US', ssmlGender: 'NEUTRAL'},
+        voice: {languageCode: 'en-IN', ssmlGender: 'FEMALE'},
         // select the type of audio encoding
         audioConfig: {audioEncoding: 'MP3'},
     };
