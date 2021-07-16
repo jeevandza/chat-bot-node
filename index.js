@@ -19,7 +19,11 @@ const client = new textToSpeech.TextToSpeechClient({
     keyFilename: require("path").join('./noyalbot-p9ii-0dc8295201bc.json')
 });
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 
