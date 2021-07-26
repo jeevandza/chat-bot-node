@@ -55,6 +55,8 @@ app.post('/', express.json(), async (req,res) =>{
     const responses = await sessionClient.detectIntent(requestToDialogflow);
     
 
+    console.log('responses', response);
+
 
 
     const requestTexttoSpeech = {
@@ -108,10 +110,10 @@ app.post('/news', express.json(), (req, res)=>{
                     "subtitle": "Info item subtitle",
                     "image": {
                       "src": {
-                        "rawUrl": "https://www.google.com/search?q=news&rlz=1C1RXQR_enIN930IN931&sxsrf=ALeKk00qMFHVs1nVxCBr1NObeabgIn_s3g%3A1627297053571&ei=HZX-YI3zIZG7rQGlrozQCA&oq=news&gs_lcp=Cgdnd3Mtd2l6EAMyCggAELEDEIMBEEMyBwgAELEDEEMyBAgAEEMyBAgAEEMyBAgAEEMyBAgAEEMyCAgAELEDEIMBMgQIABBDMgcILhCxAxBDMgcIABDHAxBDOgcIIxDqAhAnOgQIIxAnOggILhCxAxCDAUoECEEYAFDaLFjhMWDVMmgBcAJ4AIABsQGIAf8EkgEDMC40mAEAoAEBqgEHZ3dzLXdperABCsABAQ&sclient=gws-wiz&ved=0ahUKEwjN9cj2yYDyAhWRXSsKHSUXA4oQ4dUDCA8&uact=5"
+                        "rawUrl": "www.google.com"
                       }
                     },
-                    "actionLink": "https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN:en"
+                    "actionLink": "www.google.com"
                   }
                 ]
               ]
