@@ -55,7 +55,7 @@ app.post('/', express.json(), async (req,res) =>{
     const responses = await sessionClient.detectIntent(requestToDialogflow);
     
 
-    console.log('responses', responses);
+    console.log('responses', responses[0].queryResult.webhookPayload);
 
 
 
