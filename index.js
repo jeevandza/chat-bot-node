@@ -102,21 +102,9 @@ app.post('/news', express.json(), (req, res)=>{
   function News (agent){
       var payloadData = {
           
-              "richContent": [
-                [
-                  {
-                    "type": "info",
-                    "title": "Info item title",
-                    "subtitle": "Info item subtitle",
-                    "image": {
-                      "src": {
-                        "rawUrl": "www.google.com"
-                      }
-                    },
-                    "actionLink": "www.google.com"
-                  }
-                ]
-              ]
+              type: 'news',
+              
+              
             }
 
            agent.add(new dfff.Payload(agent.UNSPECIFIED, payloadData, {sendAsMessage :true, rawPayload: true }))
