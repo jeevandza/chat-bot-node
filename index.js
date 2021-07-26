@@ -14,6 +14,7 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 
 const fs = require('fs');
 const util = require('util');
+const { diffieHellman } = require('crypto');
 
 const client = new textToSpeech.TextToSpeechClient({
     keyFilename: require("path").join('./noyalbot-p9ii-0dc8295201bc.json')
@@ -27,7 +28,7 @@ app.use(function(req, res, next) {
 
 
 
-//send the request
+// send the request
 app.get('/', (req,res) =>{
   res.send('wer are live')
 }) ;
@@ -52,6 +53,7 @@ app.post('/', express.json(), async (req,res) =>{
       
 
     const responses = await sessionClient.detectIntent(requestToDialogflow);
+    
 
 
 
@@ -85,6 +87,52 @@ app.post('/', express.json(), async (req,res) =>{
 
 
 });
+
+
+app.post('/news', express.json(), (req, res)=>{
+  const agent = new dfff.WebhookClient({
+      request:req,
+      response:res
+  });
+  function demo(agent){
+      agent.add('sending response from webhook server');
+  }
+  function News (agent){
+      var payloadData = {
+          
+              "richContent": [
+                [
+                  {
+                    "type": "info",
+                    "title": "Info item title",
+                    "subtitle": "Info item subtitle",
+                    "image": {
+                      "src": {
+                        "rawUrl": "https://www.google.com/search?q=news&rlz=1C1RXQR_enIN930IN931&sxsrf=ALeKk00qMFHVs1nVxCBr1NObeabgIn_s3g%3A1627297053571&ei=HZX-YI3zIZG7rQGlrozQCA&oq=news&gs_lcp=Cgdnd3Mtd2l6EAMyCggAELEDEIMBEEMyBwgAELEDEEMyBAgAEEMyBAgAEEMyBAgAEEMyBAgAEEMyCAgAELEDEIMBMgQIABBDMgcILhCxAxBDMgcIABDHAxBDOgcIIxDqAhAnOgQIIxAnOggILhCxAxCDAUoECEEYAFDaLFjhMWDVMmgBcAJ4AIABsQGIAf8EkgEDMC40mAEAoAEBqgEHZ3dzLXdperABCsABAQ&sclient=gws-wiz&ved=0ahUKEwjN9cj2yYDyAhWRXSsKHSUXA4oQ4dUDCA8&uact=5"
+                      }
+                    },
+                    "actionLink": "https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN:en"
+                  }
+                ]
+              ]
+            }
+
+           agent.add(new dfff.Payload(agent.UNSPECIFIED, payloadData, {sendAsMessage :true, rawPayload: true }))
+          
+      }
+
+     
+  
+
+  var intentMap = new Map();
+
+
+  intentMap.set('webHookDemo', demo) 
+  intentMap.set('News', News)
+
+  agent.handleRequest(intentMap);
+});
+
 
 app.use(express.static (__dirname + "/public"));
 //listen in the port 
